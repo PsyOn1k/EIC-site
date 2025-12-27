@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ост Индийская Компания — О нас</title>
+    <!-- Tailwind CSS for utility styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- External Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="header" class="fixed w-full z-50 transition-all duration-500 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <div class="w-16 h-16 flex items-center justify-center p-1 overflow-hidden transition-transform group-hover:scale-110">
+                    <svg viewBox="0 0 100 100" class="eic-logo-svg text-white fill-none stroke-current" stroke-width="5" stroke-linecap="round">
+                        <path d="M50 50 L50 15" /> 
+                        <path d="M50 50 L25 75" />
+                        <path d="M50 50 L75 75" />
+                        <path d="M40 25 L60 25" />
+                        <path d="M22 65 L35 78" />
+                        <path d="M78 65 L65 78" />
+                        <text x="22" y="42" fill="currentColor" stroke="none" font-family="Montserrat" font-weight="700" font-size="24">E</text>
+                        <text x="68" y="42" fill="currentColor" stroke="none" font-family="Montserrat" font-weight="700" font-size="24">I</text>
+                        <text x="35" y="95" fill="currentColor" stroke="none" font-family="Montserrat" font-weight="700" font-size="18">Co</text>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-tighter text-xl leading-none">EIC GROUP</span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] opacity-50">Personnel Solutions</span>
+                </div>
+            </a>
+            
+            <nav class="hidden lg:flex items-center gap-10 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
+                <a href="about.html" class="hover:text-white transition-all text-white">О компании</a>
+                <a href="index.html#services" class="hover:text-white transition-all">Услуги</a>
+                <a href="index.html#reviews" class="hover:text-white transition-all">Отзывы</a>
+                <a href="index.html#contact" class="hover:text-white transition-all">Контакты</a>
+            </nav>
+
+            <div class="flex items-center gap-8">
+                <a href="tel:+78129968678" class="hidden md:block text-sm font-semibold hover:opacity-70 transition-opacity">
+                    <i class="fas fa-phone-alt mr-2 text-xs opacity-50"></i>+7 812 996 86 78
+                </a>
+                <a href="index.html#contact" class="btn-liquid glass px-8 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-black transition-all">
+                    Связаться
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="py-48 min-h-screen">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mb-32 reveal">
+                    <h2 class="text-[10px] uppercase tracking-[0.5em] text-indigo-400 font-bold mb-6">Кто мы такие</h2>
+                    <h1 class="text-5xl md:text-8xl font-bold mb-12 text-gradient tracking-tighter">Мастера Глобального Рекрутинга</h1>
+                    <p class="text-2xl text-white/70 leading-relaxed font-light italic">
+                        «Ост Индийская Компания» (EIC Group) — это современное воплощение эффективности исторических торговых путей. В 21 веке главная ценность — это интеллект, и мы умеем его находить.
+                    </p>
+                </div>
+
+                <!-- Philosophy -->
+                <div class="grid lg:grid-cols-2 gap-24 items-center mb-48 reveal">
+                    <div>
+                        <div class="relative rounded-[3rem] overflow-hidden group">
+                            <div class="absolute inset-0 bg-indigo-500/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" class="grayscale group-hover:grayscale-0 transition-all duration-1000 transform group-hover:scale-110" alt="Office">
+                        </div>
+                    </div>
+                    <div class="space-y-12">
+                        <h3 class="text-3xl font-bold">Наша философия</h3>
+                        <p class="text-white/50 leading-relaxed text-lg">
+                            Мы отказались от классической модели кадрового агентства в пользу консалтинга полного цикла. Мы не просто пересылаем резюме — мы проводим многоступенчатый отбор, включая технический асессмент и проверку культурного соответствия.
+                        </p>
+                        <div class="space-y-8">
+                            <div class="flex gap-6">
+                                <div class="text-indigo-400 font-bold text-xl">01</div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Глубокое погружение</h4>
+                                    <p class="text-white/40 text-sm">Изучаем архитектуру вашего бизнеса перед стартом поиска.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="text-indigo-400 font-bold text-xl">02</div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Глобальная сеть</h4>
+                                    <p class="text-white/40 text-sm">Наши рекрутеры работают в 5 часовых поясах одновременно.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="text-indigo-400 font-bold text-xl">03</div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Безупречная этика</h4>
+                                    <p class="text-white/40 text-sm">Соблюдаем полную конфиденциальность для обеих сторон.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Methodology -->
+                <div class="mb-48 reveal">
+                    <h2 class="text-4xl font-bold mb-20 text-center">Как мы работаем</h2>
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <div class="glass p-10 rounded-[2.5rem] relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 text-8xl font-bold opacity-5 group-hover:opacity-10 transition-opacity">1</div>
+                            <h4 class="text-xl font-bold mb-4">Бриф</h4>
+                            <p class="text-white/40 text-sm">Детальный анализ вакансии и формирование портрета "идеального игрока".</p>
+                        </div>
+                        <div class="glass p-10 rounded-[2.5rem] relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 text-8xl font-bold opacity-5 group-hover:opacity-10 transition-opacity">2</div>
+                            <h4 class="text-xl font-bold mb-4">Сорсинг</h4>
+                            <p class="text-white/40 text-sm">Запуск воронки по открытым и закрытым базам (Talent Mapping).</p>
+                        </div>
+                        <div class="glass p-10 rounded-[2.5rem] relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 text-8xl font-bold opacity-5 group-hover:opacity-10 transition-opacity">3</div>
+                            <h4 class="text-xl font-bold mb-4">Скрининг</h4>
+                            <p class="text-white/40 text-sm">Интервью с экспертами EIC и техническая верификация навыков.</p>
+                        </div>
+                        <div class="glass p-10 rounded-[2.5rem] relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 text-8xl font-bold opacity-5 group-hover:opacity-10 transition-opacity">4</div>
+                            <h4 class="text-xl font-bold mb-4">Оффер</h4>
+                            <p class="text-white/40 text-sm">Финальные переговоры и поддержка на этапе онбординга.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center mb-48 reveal">
+                    <h2 class="text-4xl font-bold mb-12">За каждым успехом стоят люди</h2>
+                    <p class="text-white/50 max-w-2xl mx-auto mb-16 italic">"Наша команда — это микс из HR-экспертов, технических лидов и бизнес-консультантов с мировым опытом."</p>
+                    <a href="index.html#contact" class="inline-block glass px-12 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                        Познакомиться лично
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-24 border-t border-white/5 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-4 gap-16 mb-24">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-14 h-14 flex items-center justify-center p-1">
+                             <svg viewBox="0 0 100 100" class="eic-logo-svg text-white fill-none stroke-current" stroke-width="6" stroke-linecap="round">
+                                <path d="M50 50 L50 20" /><path d="M50 50 L28 72" /><path d="M50 50 L72 72" /><path d="M42 28 L58 28" /><path d="M26 62 L38 74" /><path d="M74 62 L62 74" />
+                                <text x="25" y="45" fill="currentColor" stroke="none" font-family="Montserrat" font-weight="700" font-size="20">E</text>
+                                <text x="65" y="45" fill="currentColor" stroke="none" font-family="Montserrat" font-weight="700" font-size="20">I</text>
+                                <text x="38" y="94" fill="currentColor" stroke="none" font-family="Montserrat" font-weight="700" font-size="16">Co</text>
+                            </svg>
+                        </div>
+                        <span class="font-bold tracking-widest text-lg">EIC GROUP</span>
+                    </div>
+                    <p class="text-white/40 text-sm leading-relaxed max-w-sm mb-8">
+                        Мы помогаем компаниям расти быстрее, находя таланты там, где другие их не видят.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all opacity-40 hover:opacity-100"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all opacity-40 hover:opacity-100"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold uppercase tracking-widest text-[10px] mb-8">Навигация</h5>
+                    <ul class="space-y-4 text-sm text-white/30 font-medium">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Главная</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">О компании</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Услуги</a></li>
+                        <li><a href="index.html#reviews" class="hover:text-white transition-colors">Рекомендации</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold uppercase tracking-widest text-[10px] mb-8">Юридическая информация</h5>
+                    <ul class="space-y-4 text-sm text-white/30 font-medium">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.4em] opacity-20">
+                <span>© 2024 EIC GROUP. eicgrup.ru</span>
+                <span>Design by Digital Artistry</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Entry -->
+    <script src="script.js"></script>
+</body>
+</html>
