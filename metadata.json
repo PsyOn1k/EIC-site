@@ -1,0 +1,8 @@
+{
+  "name": "Eic site",
+  "description": "Ваш надежный партнер в подборе талантов. Специализированный рекрутинг и интеграция сотрудников.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
