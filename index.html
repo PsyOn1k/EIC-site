@@ -4,96 +4,570 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ост Индийская Компания - Подбор персонала</title>
+    <title>Ост Индийская Компания — Подбор персонала</title>
+    <!-- Tailwind CSS for utility styles -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #ffffff;
+            --bg-dark: #030712;
         }
+
         body {
             font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-            background: #0d1117;
+            background-color: var(--bg-dark);
             color: #ffffff;
+            scroll-behavior: smooth;
             overflow-x: hidden;
         }
+
+        /* Liquid Background Blobs */
         .liquid-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
-        }
-        .liquid-blob {
-            position: fixed;
-            filter: blur(80px);
             z-index: -1;
-            opacity: 0.4;
-            animation: move 20s infinite alternate;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0f172a, #030712);
         }
+
+        .blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            filter: blur(90px);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: move 30s infinite alternate ease-in-out;
+        }
+
+        .blob-1 { 
+            top: -15%; 
+            left: -10%; 
+            background: linear-gradient(135deg, #4f46e5, #9333ea); 
+        }
+        .blob-2 { 
+            bottom: -15%; 
+            right: -10%; 
+            background: linear-gradient(135deg, #10b981, #3b82f6); 
+            animation-delay: -5s; 
+        }
+        .blob-3 { 
+            top: 30%; 
+            left: 20%; 
+            width: 400px; 
+            height: 400px; 
+            background: rgba(236, 72, 153, 0.2); 
+            animation-delay: -10s; 
+        }
+
         @keyframes move {
-            from { transform: translate(-10%, -10%) scale(1); }
-            to { transform: translate(20%, 20%) scale(1.2); }
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(150px, 100px) rotate(90deg) scale(1.2); }
+            100% { transform: translate(-50px, 200px) rotate(180deg) scale(0.9); }
         }
+
+        /* Liquid Glass Components */
         .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
         }
+
         .glass-dark {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
         .text-gradient {
-            background: linear-gradient(to bottom right, #fff, #94a3b8);
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 700;
-            line-height: 1.1;
-        }
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        .btn-liquid {
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 1);
-            color: #000;
+
+        .btn-liquid::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.05);
+
+        .btn-liquid:hover::before {
+            left: 100%;
+        }
+
+        .nav-scrolled {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        section {
+            position: relative;
         }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
-  }
-}
-</script>
 </head>
 <body>
-    <div class="liquid-bg"></div>
-    <div class="liquid-blob w-[500px] h-[500px] bg-indigo-900 rounded-full top-[-100px] left-[-100px]"></div>
-    <div class="liquid-blob w-[400px] h-[400px] bg-slate-800 rounded-full bottom-[-100px] right-[-100px]"></div>
-    <div id="root"></div>
+    <!-- Animated Background Elements -->
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="header" class="fixed w-full z-50 transition-all duration-500 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 glass rounded-xl flex items-center justify-center font-bold text-2xl border-white/20">E</div>
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-tighter text-xl leading-none">EIC GROUP</span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] opacity-50">Personnel Solutions</span>
+                </div>
+            </div>
+            
+            <nav class="hidden lg:flex items-center gap-10 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
+                <a href="#about" class="hover:text-white transition-all">О нас</a>
+                <a href="#services" class="hover:text-white transition-all">Услуги</a>
+                <a href="#reviews" class="hover:text-white transition-all">Рекомендации</a>
+                <a href="#contact" class="hover:text-white transition-all">Контакты</a>
+            </nav>
+
+            <div class="flex items-center gap-8">
+                <a href="tel:+78129968678" class="hidden md:block text-sm font-semibold hover:opacity-70 transition-opacity">
+                    <i class="fas fa-phone-alt mr-2 text-xs opacity-50"></i>+7 812 996 86 78
+                </a>
+                <button class="btn-liquid glass px-8 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-black transition-all">
+                    Заказать звонок
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center pt-24">
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <div class="glass w-32 h-32 mb-12 mx-auto flex items-center justify-center rounded-3xl border-white/10 p-6 shadow-2xl">
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-white fill-current">
+                        <path d="M50 5 L62 38 L95 38 L68 58 L78 92 L50 72 L22 92 L32 58 L5 38 L38 38 Z" />
+                    </svg>
+                </div>
+                <h1 class="text-5xl md:text-8xl font-bold mb-8 text-gradient tracking-tight leading-none">
+                    Ост Индийская Компания
+                </h1>
+                <p class="text-xl md:text-3xl text-white/60 mb-16 leading-relaxed max-w-4xl mx-auto font-light">
+                    Ваш надежный партнер в подборе талантов. Мы помогаем компаниям любого масштаба находить лучших специалистов для долгосрочного успеха.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="#contact" class="bg-white text-black px-12 py-5 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-white/5">
+                        Начать сотрудничество
+                    </a>
+                    <a href="#services" class="glass px-12 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
+                        Наши услуги
+                    </a>
+                </div>
+                
+                <!-- Subtle flag colors visual reference -->
+                <div class="mt-24 flex justify-center gap-1 opacity-20">
+                    <div class="w-12 h-1 bg-orange-500 rounded-full"></div>
+                    <div class="w-12 h-1 bg-white rounded-full"></div>
+                    <div class="w-12 h-1 bg-green-500 rounded-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-32">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-24">
+                    <div class="lg:w-1/2">
+                        <div class="relative glass p-3 rounded-[2.5rem] border-white/10 overflow-hidden group">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200" 
+                                 alt="Recruitment Profession" 
+                                 class="rounded-[2rem] w-full grayscale-[0.8] group-hover:grayscale-0 transition-all duration-1000">
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <h2 class="text-4xl md:text-6xl font-bold mb-10 leading-tight">Подбор персонала для вашего бизнеса</h2>
+                        <div class="w-24 h-1.5 bg-gradient-to-r from-white to-transparent mb-12 rounded-full"></div>
+                        <p class="text-2xl text-white/80 mb-10 italic font-light leading-relaxed">
+                            «Мы меняем стереотипы о подборе персонала. Мы не ищем сотрудников — мы находим тех, кто станет частью вашего успеха.»
+                        </p>
+                        <p class="text-lg text-white/50 leading-relaxed mb-8">
+                            Нас вдохновляет ваш рост. Мы делаем процесс найма быстрым, честным и прозрачным, избавляя вас от головной боли и лишних административных затрат.
+                        </p>
+                        <div class="grid grid-cols-2 gap-8 pt-6">
+                            <div class="glass p-6 rounded-2xl">
+                                <span class="block text-3xl font-bold mb-1">100%</span>
+                                <span class="text-[10px] uppercase tracking-widest opacity-40">Гарантия результата</span>
+                            </div>
+                            <div class="glass p-6 rounded-2xl">
+                                <span class="block text-3xl font-bold mb-1">0₽</span>
+                                <span class="text-[10px] uppercase tracking-widest opacity-40">Предоплата</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-32 relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-24">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6">Наши услуги</h2>
+                    <p class="text-xl text-white/40 max-w-2xl mx-auto">Комплексные решения по формированию вашей идеальной команды</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Service 1 -->
+                    <div class="glass p-12 rounded-[3rem] glass-hover flex flex-col items-start">
+                        <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-10 text-2xl">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-6">Бесплатно для работодателей</h3>
+                        <p class="text-white/50 leading-relaxed mb-8 flex-grow">
+                            Вы не платите за поиск и собеседования. Мы берем небольшую комиссию только с фактической зарплаты нанятого сотрудника. Никаких рисков.
+                        </p>
+                        <span class="text-xs font-bold uppercase tracking-widest opacity-30">Выгода #1</span>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="glass p-12 rounded-[3rem] glass-hover flex flex-col items-start border-white/20 bg-white/5">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-10 text-2xl">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-6">Индивидуальный подход</h3>
+                        <p class="text-white/50 leading-relaxed mb-8 flex-grow">
+                            Каждый бизнес уникален. Мы глубоко погружаемся в специфику вашей ниши, чтобы найти специалиста, идеально подходящего по компетенциям и культуре.
+                        </p>
+                        <span class="text-xs font-bold uppercase tracking-widest opacity-30">Качество #1</span>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="glass p-12 rounded-[3rem] glass-hover flex flex-col items-start">
+                        <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-10 text-2xl">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-6">Полная интеграция</h3>
+                        <p class="text-white/50 leading-relaxed mb-8 flex-grow">
+                            Мы сопровождаем весь процесс: от первой воронки кандидатов до успешного прохождения испытательного срока новым сотрудником.
+                        </p>
+                        <span class="text-xs font-bold uppercase tracking-widest opacity-30">Сервис #1</span>
+                    </div>
+                </div>
+
+                <!-- Integration Highlight Card -->
+                <div class="glass p-1 rounded-[3.5rem] mt-16 overflow-hidden">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 p-12 md:p-20">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-8">Комплексное сопровождение</h3>
+                            <p class="text-white/60 text-lg leading-relaxed mb-10">
+                                Наши услуги включают не просто поиск резюме, а полноценный аудит вакансии, профессиональное тестирование навыков и психологическую оценку совместимости.
+                            </p>
+                            <ul class="space-y-4 mb-10">
+                                <li class="flex items-center gap-4 text-sm text-white/80">
+                                    <i class="fas fa-check-circle text-indigo-400"></i> Анализ рынка зарплат
+                                </li>
+                                <li class="flex items-center gap-4 text-sm text-white/80">
+                                    <i class="fas fa-check-circle text-indigo-400"></i> Прямой хантинг специалистов
+                                </li>
+                                <li class="flex items-center gap-4 text-sm text-white/80">
+                                    <i class="fas fa-check-circle text-indigo-400"></i> Помощь в адаптации
+                                </li>
+                            </ul>
+                            <button class="btn-liquid glass px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest">
+                                Узнать подробнее
+                            </button>
+                        </div>
+                        <div class="md:w-1/2 h-[500px] overflow-hidden rounded-[3rem]">
+                            <img src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80&w=1000" 
+                                 class="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-1000" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Us Checklist -->
+        <section class="py-32 bg-white/[0.02]">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-6xl font-bold mb-24 text-center">Почему выбирают нас?</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+                    <!-- Reason 1 -->
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 glass rounded-full flex-shrink-0 flex items-center justify-center text-indigo-400 group-hover:bg-white group-hover:text-black transition-all">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">Стабильность</h4>
+                            <p class="text-white/40 text-sm leading-relaxed">С нами вы не просто закрываете вакансии — вы строите стабильную и профессиональную команду на годы вперед.</p>
+                        </div>
+                    </div>
+                    <!-- Reason 2 -->
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 glass rounded-full flex-shrink-0 flex items-center justify-center text-indigo-400 group-hover:bg-white group-hover:text-black transition-all">
+                            <i class="fas fa-sync"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">Гибкость</h4>
+                            <p class="text-white/40 text-sm leading-relaxed">Надежный партнер, который быстро адаптируется под любые изменения и требования вашего бизнеса.</p>
+                        </div>
+                    </div>
+                    <!-- Reason 3 -->
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 glass rounded-full flex-shrink-0 flex items-center justify-center text-indigo-400 group-hover:bg-white group-hover:text-black transition-all">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">Долгосрочные Результаты</h4>
+                            <p class="text-white/40 text-sm leading-relaxed">Помогаем строить команду, которая растет и развивается вместе с вами, обеспечивая постоянный успех.</p>
+                        </div>
+                    </div>
+                    <!-- Reason 4 -->
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 glass rounded-full flex-shrink-0 flex items-center justify-center text-indigo-400 group-hover:bg-white group-hover:text-black transition-all">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">Экономия Времени</h4>
+                            <p class="text-white/40 text-sm leading-relaxed">Мы берем на себя все: от поиска и интервью до оформления документов. Вы фокусируетесь только на бизнесе.</p>
+                        </div>
+                    </div>
+                    <!-- Reason 5 -->
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 glass rounded-full flex-shrink-0 flex items-center justify-center text-indigo-400 group-hover:bg-white group-hover:text-black transition-all">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">Никаких Предоплат</h4>
+                            <p class="text-white/40 text-sm leading-relaxed">Оплата происходит только по факту выхода сотрудника на работу. Максимальная честность и прозрачность.</p>
+                        </div>
+                    </div>
+                    <!-- Reason 6 -->
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 glass rounded-full flex-shrink-0 flex items-center justify-center text-indigo-400 group-hover:bg-white group-hover:text-black transition-all">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">Уникальность</h4>
+                            <p class="text-white/40 text-sm leading-relaxed">Никаких шаблонов. Для каждого клиента мы разрабатываем индивидуальную стратегию поиска талантов.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-20">Наши рекомендации</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="glass-dark p-10 rounded-3xl border-white/5 relative glass-hover">
+                        <div class="text-indigo-400 text-3xl mb-8 opacity-20"><i class="fas fa-quote-left"></i></div>
+                        <p class="text-white/80 italic mb-10 leading-relaxed font-light">
+                            «Лучший опыт работы с кадровым агентством за последние 5 лет. Нашли Senior-разработчика за 14 дней без лишних вопросов.»
+                        </p>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-lg">Александр В.</span>
+                            <span class="text-[10px] uppercase tracking-widest opacity-40">Tech Solutions CEO</span>
+                        </div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="glass-dark p-10 rounded-3xl border-white/5 relative glass-hover">
+                        <div class="text-indigo-400 text-3xl mb-8 opacity-20"><i class="fas fa-quote-left"></i></div>
+                        <p class="text-white/80 italic mb-10 leading-relaxed font-light">
+                            «Приятно удивлена форматом оплаты. Реально никаких финансовых рисков для стартапа. Качество кандидатов — выше всяких похвал.»
+                        </p>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-lg">Елена К.</span>
+                            <span class="text-[10px] uppercase tracking-widest opacity-40">Retail Group HRD</span>
+                        </div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="glass-dark p-10 rounded-3xl border-white/5 relative glass-hover">
+                        <div class="text-indigo-400 text-3xl mb-8 opacity-20"><i class="fas fa-quote-left"></i></div>
+                        <p class="text-white/80 italic mb-10 leading-relaxed font-light">
+                            «Специалисты из Индии и Азии, которых подобрали в EIC, отлично влились в наш технологический процесс. Очень довольны результатом.»
+                        </p>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-lg">Дмитрий М.</span>
+                            <span class="text-[10px] uppercase tracking-widest opacity-40">LogiFlow Production Manager</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="py-32 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto mb-32">
+                <h2 class="text-4xl md:text-6xl font-bold mb-10">
+                    Передайте задачи экспертам и сосредоточьтесь на главном.
+                </h2>
+                <div class="inline-block py-4 px-10 glass rounded-full mb-10">
+                    <p class="text-3xl font-light text-gradient">Ваш рост – наша работа!</p>
+                </div>
+                <p class="text-white/40 italic text-xl">
+                    Заполните данные ниже, и наши специалисты свяжутся с вами в течение часа.
+                </p>
+            </div>
+
+            <!-- Contact Grid -->
+            <div class="grid lg:grid-cols-4 gap-16 mb-24">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-10 h-10 glass rounded-lg flex items-center justify-center font-bold border-white/20">E</div>
+                        <span class="font-bold tracking-widest text-lg">ОСТ ИНДИЙСКАЯ КОМПАНИЯ</span>
+                    </div>
+                    <p class="text-white/50 text-sm leading-relaxed max-w-md mb-10">
+                        Мы предоставляем лучших специалистов для вашего бизнеса без административной нагрузки и финансовых рисков. Инвестируйте в таланты правильно вместе с нами.
+                    </p>
+                    <div class="flex gap-6">
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all opacity-50 hover:opacity-100">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all opacity-50 hover:opacity-100">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all opacity-50 hover:opacity-100">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-white font-bold uppercase tracking-widest text-xs mb-8">Навигация</h5>
+                    <ul class="space-y-4 text-sm text-white/40">
+                        <li><a href="#about" class="hover:text-white transition-colors">О компании</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Наши услуги</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition-colors">Рекомендации</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold uppercase tracking-widest text-xs mb-8">Контакты</h5>
+                    <ul class="space-y-6 text-sm text-white/40">
+                        <li class="flex flex-col">
+                            <span class="text-[10px] uppercase opacity-40 mb-1">Телефон</span>
+                            <a href="tel:+78129968678" class="text-lg font-bold text-white">+7 812 996 86 78</a>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-[10px] uppercase opacity-40 mb-1">Email</span>
+                            <a href="mailto:info@eicgrup.ru" class="text-lg font-bold text-white">info@eicgrup.ru</a>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-[10px] uppercase opacity-40 mb-1">Адрес</span>
+                            <span class="text-white">Санкт-Петербург, Россия</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.4em] opacity-30 font-medium">
+                <span>© 2024 East India Company. eicgrup.ru</span>
+                <div class="flex gap-10">
+                    <a href="#" class="hover:opacity-100 transition-opacity">Политика конфиденциальности</a>
+                    <a href="#" class="hover:opacity-100 transition-opacity">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Vanilla JS for Interactive Elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('header');
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('nav-scrolled');
+                    header.classList.remove('py-6');
+                } else {
+                    header.classList.remove('nav-scrolled');
+                    header.classList.add('py-6');
+                }
+            });
+
+            // Smooth scroll for anchors
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Dynamic Hover Effect for Blobs
+            const blobs = document.querySelectorAll('.blob');
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                blobs.forEach((blob, index) => {
+                    const factor = (index + 1) * 20;
+                    blob.style.transform = `translate(${mouseX * factor}px, ${mouseY * factor}px)`;
+                });
+            });
+            
+            // CTA Button Alert (Mock Submission)
+            document.querySelectorAll('.btn-liquid').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (btn.innerText.toLowerCase().includes('звонок') || btn.innerText.toLowerCase().includes('сотрудничество')) {
+                        console.log('Call requested');
+                        // In a real app, this would open a modal form
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
