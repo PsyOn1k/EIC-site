@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData);
             
             try {
-                const response = await fetch('https://n8n.eicstaff.ru/webhook-test/1607f90f-eb0d-442f-bbbd-61b63cacc05b', {
+                const response = await fetch('https://n8n.eicstaff.ru/https://n8n.eicstaff.ru/webhook/1607f90f-eb0d-442f-bbbd-61b63cacc05b-test/1607f90f-eb0d-442f-bbbd-61b63cacc05b', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
