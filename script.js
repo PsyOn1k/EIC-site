@@ -49,24 +49,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Обработка формы контактов
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = contactForm.querySelector('button');
             const originalText = btn.innerText;
             btn.innerText = 'ОТПРАВКА...';
             btn.disabled = true;
             
-            setTimeout(() => {
-                btn.innerText = 'УСПЕШНО ОТПРАВЛЕНО';
-                btn.classList.add('bg-green-500', 'text-white');
-                contactForm.reset();
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const response = await fetch('https://n8n.eicstaff.ru/webhook-test/1607f90f-eb0d-442f-bbbd-61b63cacc05b', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
                 
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('bg-green-500', 'text-white');
-                }, 3000);
-            }, 1500);
+                if (response.ok) {
+                    btn.innerText = 'УСПЕШНО ОТПРАВЛЕНО';
+                    btn.classList.add('bg-green-500', 'text-white');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Ошибка отправки');
+                }
+            } catch (error) {
+                btn.innerText = 'ОШИБКА ОТПРАВКИ';
+                btn.classList.add('bg-red-500', 'text-white');
+            }
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.classList.remove('bg-green-500', 'bg-red-500', 'text-white');
+            }, 3000);
         });
     }
 
